@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+$white: #f7f3f2ff;
+$black: #272838ff;
+$orange: #ffbb7b;
+$flamingo: #ff9690;
+$magenta: #ff54b5;
+
+$green: #00a676ff;
+$blue: #1e91d6ff;
+$red: #ff6663ff;
+
+@mixin displayFlex($flexDirection, $justifyContent, $alignItems) {
+  display: flex;
+  flex-direction: $flexDirection;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  color: $black;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  height: 100vh;
+  background: url("./assets/images/post-1.png") -30% 50% no-repeat,
+    url("./assets/images/post-1.png") 98% -28% no-repeat,
+    url("./assets/images/post-1.png") 115% 145% no-repeat;
+  background-size: 35%, 20%, 25%;
+  //   background-image: url("./assets/images/bg_green.png");
+  //   background-size: cover;
+  // overflow: hidden;
+}
+
+.content-wrapper {
+  width: 80%;
+  margin: 0 auto;
+}

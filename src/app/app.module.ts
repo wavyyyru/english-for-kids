@@ -3,16 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MenuButtonComponent } from './header/components/menu-button/menu-button.component';
+import { ModeToggleswitchComponent } from './header/components/mode-toggleswitch/mode-toggleswitch.component';
+import { HeaderComponent } from './header/containers/header.component';
+import { MainSectionComponent } from './main-section/containers/main-section.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    MenuButtonComponent,
+    MainSectionComponent,
+    ModeToggleswitchComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,10 @@
+@import "./../../../styles.scss";
+
+.header {
+  height: 70px;
+}
+
+.header__content {
+  @include displayFlex(row, space-between, center);
+  height: 100%;
+}
