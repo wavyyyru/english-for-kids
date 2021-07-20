@@ -6,15 +6,19 @@ import { AppComponent } from './app.component';
 import { MenuButtonComponent } from './header/components/menu-button/menu-button.component';
 import { ModeToggleswitchComponent } from './header/components/mode-toggleswitch/mode-toggleswitch.component';
 import { HeaderComponent } from './header/containers/header.component';
+import { CategoryCardComponent } from './main-section/components/category-card/category-card.component';
 import { MainSectionComponent } from './main-section/containers/main-section.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    /*header components*/
     HeaderComponent,
     MenuButtonComponent,
-    MainSectionComponent,
     ModeToggleswitchComponent,
+    /*main section components*/
+    MainSectionComponent,
+    CategoryCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

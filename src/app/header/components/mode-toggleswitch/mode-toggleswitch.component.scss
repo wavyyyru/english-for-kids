@@ -1,49 +1,48 @@
 @import "./../../../../styles.scss";
 label {
   pointer-events: none;
-  .input {
+  .toggleswitch__input {
     display: none;
-    &:checked + .toggle-wrapper {
+    &:checked + .toggleswitch__toggle-wrapper {
       box-shadow: 0 8px 14px 0 rgba(darken(#3957ee, 12%), 0.12);
     }
-    &:checked + .toggle-wrapper > .selector {
-      left: calc(100% - 30px);
+    &:checked + .toggleswitch__toggle-wrapper > .toggleswitch__selector {
+      left: calc(100% - 15px);
       background-color: $green;
     }
-    &:checked ~ .notification > .selected:before {
+    &:checked ~ .toggleswitch__notification > .selected:before {
       content: "Playing";
     }
   }
-  .toggle-wrapper {
+  .toggleswitch__toggle-wrapper {
     position: relative;
-    width: 80px;
-    height: 30px;
+    width: 40px;
+    height: 15px;
     background-color: $white;
     border-radius: 999px;
     margin: auto;
     cursor: pointer;
     pointer-events: all;
     box-shadow: 0 8px 14px 0 rgba(darken(#ee5f39, 12%), 0.12);
-    .selector {
-      width: 20px;
-      height: 20px;
+    .toggleswitch__selector {
+      width: 10px;
+      height: 10px;
       position: absolute;
       top: 50%;
-      left: 10px;
+      left: 5px;
       transform: translateY(-50%);
       background-color: $red;
       transition: left 0.25s ease;
       border-radius: 50%;
     }
   }
-  .notification {
+  .toggleswitch__notification {
     text-align: center;
-    font-size: 20px;
     color: $white;
     width: 100%;
     .selected:before {
       content: "Training";
-      font-size: 1rem;
+      font-size: 0.8rem;
     }
   }
 }
