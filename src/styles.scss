@@ -33,9 +33,7 @@ body {
     url("./assets/images/post-1.png") 100% -23% no-repeat,
     url("./assets/images/post-1.png") 115% 145% no-repeat;
   background-size: 35%, 20%, 25%;
-  //   background-image: url("./assets/images/bg_green.png");
-  //   background-size: cover;
-  // overflow: hidden;
+  background-attachment: fixed, scroll, fixed;
 }
 
 .content-wrapper {
