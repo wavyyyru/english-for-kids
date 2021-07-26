@@ -1,9 +1,11 @@
 @import "./../../../../styles.scss";
 
 .navigation-button {
+  display: block;
   background: none;
   border: none;
   cursor: pointer;
+  padding: 5px;
 }
 
 .navigation-button__line {
@@ -12,26 +14,23 @@
   content: "";
   background-color: $orange;
   margin-bottom: 5px;
+
   &:last-of-type {
     margin-bottom: 0;
   }
 }
 
 .nav {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   opacity: 0;
-  transform: translateX(-50%);
-  z-index: 2;
+  transform: translateX(-100%);
+  z-index: 10;
   height: 100%;
   width: 25%;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(9px);
-  -webkit-backdrop-filter: blur(2.5px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-color: $white;
 }
 
 .nav__close-button-container {
@@ -43,22 +42,37 @@
   border: none;
   cursor: pointer;
   padding: 5px;
+  transition: ease 0.2s;
   svg {
     width: 20px;
     height: 20px;
+  }
+  &:hover {
+    transform: translateY(2px);
   }
 }
 
 .nav__categories {
   @include displayFlex(column, center, center);
   list-style: none;
-  color: $flamingo;
   font-weight: 600;
   text-transform: uppercase;
   li {
     margin-top: 5px;
+    letter-spacing: 1px;
     &:first-of-type {
       margin-top: 0;
+    }
+    a {
+      text-decoration: none;
+      color: $flamingo;
+      transition: 0.3s ease;
+      &:hover {
+        color: $magenta;
+      }
+      &.active {
+        color: $magenta;
+      }
     }
   }
 }

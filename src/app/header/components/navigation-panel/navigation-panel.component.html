@@ -1,12 +1,12 @@
-<button (click)="handleMenuClick()" class="navigation-button">
+<button (click)="toggleMenuState()" class="navigation-button">
   <div class="navigation-button__line"></div>
   <div class="navigation-button__line"></div>
   <div class="navigation-button__line"></div>
 </button>
 
-<nav class="nav" [@moveLeft]="menuIsOpen ? 'move' : 'stay'">
+<nav class="nav" [@moveLeft]="menuState ? 'move' : 'stay'">
   <div class="nav__close-button-container">
-    <button (click)="handleMenuClick()" class="nav__close-button">
+    <button (click)="toggleMenuState()" class="nav__close-button">
       <svg
         height="20pt"
         viewBox="0 0 329.26933 329"
@@ -21,6 +21,18 @@
     </button>
   </div>
   <ul class="nav__categories">
-    <li *ngFor="let category of categories">{{ category.categoryName }}</li>
+    <li>
+      <a routerLink="/categories" routerLinkActive="active"
+        >&#9668; Back to categories</a
+      >
+    </li>
+    <li *ngFor="let category of categories">
+      <a
+        [routerLink]="[category.path, category.id]"
+        routerLinkActive="active"
+        >{{ category.categoryName }}</a
+      >
+    </li>
+    <!-- <li *ngFor="let category of categories">{{ category.categoryName }}</li> -->
   </ul>
 </nav>

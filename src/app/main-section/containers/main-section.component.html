@@ -1,10 +1,10 @@
 <main class="content-wrapper">
-  <h1 class="main__title">Hey, let's learn English!</h1>
-  <h2 class="main__subtitle">Choose one of the categories to begin.</h2>
-  <div class="main__cards">
-    <app-category-card
+  <!-- <div class="cards-grid"> -->
+  <router-outlet> </router-outlet>
+  <!-- <app-categories-container></app-categories-container> -->
+  <!-- <app-category-card
       *ngFor="let category of categories"
       [category]="category"
-    ></app-category-card>
-  </div>
+    ></app-category-card> -->
+  <!-- </div> -->
 </main>

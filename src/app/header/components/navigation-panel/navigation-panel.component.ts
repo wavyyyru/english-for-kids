@@ -8,6 +8,8 @@ import {
   transition,
 } from '@angular/animations';
 import { Category } from 'src/models/category.interface';
+import { AppStyleService } from 'src/app/services/app-style.service';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
   selector: 'app-navigation-panel',
@@ -18,7 +20,7 @@ import { Category } from 'src/models/category.interface';
       state(
         'stay',
         style({
-          transform: 'translateX(-50%)',
+          transform: 'translateX(-100%)',
           opacity: '0',
         })
       ),
@@ -29,17 +31,28 @@ import { Category } from 'src/models/category.interface';
           opacity: '1',
         })
       ),
-      transition('* => *', [animate('0.3s')]),
+      transition('* => *', [animate('0.4s')]),
     ]),
   ],
 })
 export class NavigationPanelComponent {
-  @Input()
   categories: Category[];
-  menuIsOpen: boolean = false;
-  constructor() {}
-  handleMenuClick() {
-    this.menuIsOpen = !this.menuIsOpen;
+  menuState: boolean;
+  toggleMenuState() {
+    this.appStyleService.menuIsOpen.next(
+      !this.appStyleService.menuIsOpen.value
+    );
   }
-  ngOnInit(): void {}
+
+  constructor(
+    private categoriesService: CategoriesService,
+    private appStyleService: AppStyleService
+  ) {}
+
+  ngOnInit(): void {
+    this.categories = this.categoriesService.getCategories();
+    this.appStyleService.menuIsOpen.subscribe(
+      (value) => (this.menuState = value)
+    );
+  }
 }

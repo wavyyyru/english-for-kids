@@ -5,8 +5,10 @@
   height: 175px;
   border-radius: 10px;
   transition: ease 0.3s;
+  cursor: pointer;
 
   &:hover {
+    transform: translateY(-2px);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
   }
 }
@@ -15,6 +17,11 @@
   height: 70%;
   border-radius: 10px 10px 0 0;
   background: $white;
+  text-align: center;
+
+  img {
+    height: 100%;
+  }
 }
 
 .category-card__description {
