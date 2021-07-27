@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Category, CategoryWords } from 'src/models/category.interface';
 
 @Injectable({
@@ -29,6 +30,16 @@ export class CategoriesService {
         'Бык',
         'Ёж',
       ],
+      images: [
+        './../../../../assets/images/categories/animals/chick.svg',
+        './../../../../assets/images/categories/animals/whale.svg',
+        './../../../../assets/images/categories/animals/pig.svg',
+        './../../../../assets/images/categories/animals/fox.svg',
+        './../../../../assets/images/categories/animals/tiger.svg',
+        './../../../../assets/images/categories/animals/crab.svg',
+        './../../../../assets/images/categories/animals/bull.svg',
+        './../../../../assets/images/categories/animals/hedgehog.svg',
+      ],
     },
     {
       categoryId: 2,
@@ -53,8 +64,19 @@ export class CategoriesService {
         'Капуста',
         'Апельсин',
       ],
+      images: [
+        './../../../../assets/images/categories/food/apple.svg',
+        './../../../../assets/images/categories/food/banana.svg',
+        './../../../../assets/images/categories/food/bread.svg',
+        './../../../../assets/images/categories/food/cheese.svg',
+        './../../../../assets/images/categories/food/pumpkin.svg',
+        './../../../../assets/images/categories/food/tomato.svg',
+        './../../../../assets/images/categories/food/cabbage.svg',
+        './../../../../assets/images/categories/food/orange.svg',
+      ],
     },
   ];
+  chosenCategory: Observable<CategoryWords> = new Observable<CategoryWords>();
   constructor() {}
   getCategories(): Category[] {
     return [
@@ -117,12 +139,10 @@ export class CategoriesService {
     ];
   }
 
-  getWordsByCategory(categoryId: number) {
-    return this.categoryWords.filter((element) => {
+  getWordsByCategory(categoryId: number): void {
+    this.categoryWords.filter((element) => {
       if (element.categoryId === categoryId) {
-        return element;
-      } else {
-        return null;
+        this.chosenCategory = of(element);
       }
     });
   }

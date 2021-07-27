@@ -11,4 +11,5 @@ export interface CategoryWords {
   categoryName: string;
   englishWords: string[];
   russianWords: string[];
+  images: string[];
 }

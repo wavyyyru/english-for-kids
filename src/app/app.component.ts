@@ -7,6 +7,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import {
       state(
         'stay',
         style({
+          display: 'none',
           opacity: '0',
           zIndex: '-1',
         })
@@ -24,6 +26,7 @@ import {
       state(
         'move',
         style({
+          display: 'block',
           opacity: '1',
           zIndex: '3',
         })

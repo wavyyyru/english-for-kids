@@ -27,11 +27,9 @@
       >
     </li>
     <li *ngFor="let category of categories">
-      <a
-        [routerLink]="[category.path, category.id]"
-        routerLinkActive="active"
-        >{{ category.categoryName }}</a
-      >
+      <a [routerLink]="['category/', category.id]" routerLinkActive="active">{{
+        category.categoryName
+      }}</a>
     </li>
     <!-- <li *ngFor="let category of categories">{{ category.categoryName }}</li> -->
   </ul>

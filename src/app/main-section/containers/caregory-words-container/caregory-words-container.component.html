@@ -1,0 +1,10 @@
+<h2 class="category-title">
+  {{ categoryWords.categoryName }} category. Feel free to practice!
+</h2>
+<div class="cards-grid">
+  <app-word-card
+    [categoryWords]="categoryWords"
+    *ngFor="let word of categoryWords.englishWords; let i = index"
+    [wordCounter]="i"
+  ></app-word-card>
+</div>

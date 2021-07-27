@@ -11,6 +11,5 @@ export class CategoriesContainerComponent {
   categories: Category[];
   constructor(private categoriesService: CategoriesService) {
     this.categories = categoriesService.getCategories();
-    console.log(categoriesService.getWordsByCategory(1));
   }
 }
