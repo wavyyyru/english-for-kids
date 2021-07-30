@@ -21,16 +21,21 @@
     </button>
   </div>
   <ul class="nav__categories">
-    <li>
-      <a routerLink="/categories" routerLinkActive="active"
+    <li class="nav__category-item">
+      <a
+        class="nav__category-link"
+        routerLink="/categories"
+        routerLinkActive="active"
         >&#9668; Back to categories</a
       >
     </li>
-    <li *ngFor="let category of categories">
-      <a [routerLink]="['category/', category.id]" routerLinkActive="active">{{
-        category.categoryName
-      }}</a>
+    <li class="nav__category-item" *ngFor="let category of categories">
+      <a
+        class="nav__category-link"
+        [routerLink]="['category/', category.id]"
+        routerLinkActive="active"
+        >{{ category.categoryName }}</a
+      >
     </li>
-    <!-- <li *ngFor="let category of categories">{{ category.categoryName }}</li> -->
   </ul>
 </nav>

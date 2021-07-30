@@ -1,6 +1,20 @@
-<h2 class="category-title">
-  {{ categoryWords.categoryName }} category. Feel free to practice!
+<h2
+  class="category-title"
+  [ngStyle]="{ fontSize: gameState ? '1.7rem' : '1.5rem' }"
+>
+  {{ categoryWords.categoryName }} category.
+  {{ gameState ? "Show your skill!" : "Feel free to practice!" }}
 </h2>
+<button
+  class="gamestart-btn"
+  [ngStyle]="{
+    height: gameState ? '40px' : '0px',
+    fontSize: gameState ? '0.9rem' : '0rem',
+    opacity: gameState ? '1' : '0'
+  }"
+>
+  Start game
+</button>
 <div class="cards-grid">
   <app-word-card
     [categoryWords]="categoryWords"

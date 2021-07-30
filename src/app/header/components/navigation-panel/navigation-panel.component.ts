@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 
 import {
   trigger,
@@ -35,14 +35,9 @@ import { CategoriesService } from 'src/app/services/categories.service';
     ]),
   ],
 })
-export class NavigationPanelComponent {
+export class NavigationPanelComponent implements OnInit {
   categories: Category[];
   menuState: boolean;
-  toggleMenuState() {
-    this.appStyleService.menuIsOpen.next(
-      !this.appStyleService.menuIsOpen.value
-    );
-  }
 
   constructor(
     private categoriesService: CategoriesService,
@@ -51,8 +46,18 @@ export class NavigationPanelComponent {
 
   ngOnInit(): void {
     this.categories = this.categoriesService.getCategories();
-    this.appStyleService.menuIsOpen.subscribe(
-      (value) => (this.menuState = value)
+    this.appStyleService.menuIsOpen.subscribe((value) =>
+      this.onMenuOpen(value)
     );
+  }
+
+  toggleMenuState() {
+    this.appStyleService.menuIsOpen.next(
+      !this.appStyleService.menuIsOpen.value
+    );
+  }
+
+  onMenuOpen(value: boolean) {
+    this.menuState = value;
   }
 }

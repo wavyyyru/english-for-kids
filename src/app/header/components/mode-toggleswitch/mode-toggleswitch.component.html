@@ -1,6 +1,11 @@
 <div class="toggleswitch">
-  <label for="toggle">
-    <input class="toggleswitch__input" type="checkbox" id="toggle" />
+  <label class="toggleswitch__label" for="toggle">
+    <input
+      class="toggleswitch__input"
+      type="checkbox"
+      id="toggle"
+      (click)="toggleMode()"
+    />
     <div class="toggleswitch__toggle-wrapper">
       <span class="toggleswitch__selector"></span>
     </div>

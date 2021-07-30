@@ -1,5 +1,5 @@
 @import "./../../../../styles.scss";
-label {
+.toggleswitch__label {
   pointer-events: none;
   .toggleswitch__input {
     display: none;
@@ -7,7 +7,7 @@ label {
       box-shadow: 0 8px 14px 0 rgba(darken(#3957ee, 12%), 0.12);
     }
     &:checked + .toggleswitch__toggle-wrapper > .toggleswitch__selector {
-      left: calc(100% - 15px);
+      left: calc(100% - 21px);
       background-color: $green;
     }
     &:checked ~ .toggleswitch__notification > .selected:before {
@@ -16,8 +16,8 @@ label {
   }
   .toggleswitch__toggle-wrapper {
     position: relative;
-    width: 40px;
-    height: 15px;
+    width: 70px;
+    height: 25px;
     background-color: $white;
     border-radius: 999px;
     margin: auto;
@@ -25,8 +25,8 @@ label {
     pointer-events: all;
     box-shadow: 0 8px 14px 0 rgba(darken(#ee5f39, 12%), 0.12);
     .toggleswitch__selector {
-      width: 10px;
-      height: 10px;
+      width: 17px;
+      height: 17px;
       position: absolute;
       top: 50%;
       left: 5px;
@@ -40,9 +40,10 @@ label {
     text-align: center;
     color: $white;
     width: 100%;
+    letter-spacing: 1px;
     .selected:before {
       content: "Training";
-      font-size: 0.8rem;
+      font-size: 1.1rem;
     }
   }
 }

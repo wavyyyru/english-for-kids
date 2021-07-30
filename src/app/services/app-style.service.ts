@@ -6,10 +6,5 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AppStyleService {
   menuIsOpen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
-  constructor() {}
-
-  logMenuStatus() {
-    console.log('menu status from service: ' + this.menuIsOpen.value);
-  }
+  gameIsStarted: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 }

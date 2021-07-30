@@ -1,9 +1,9 @@
 <div class="category-card">
   <div class="category-card__image">
-    <img [src]="category.image" alt="" />
+    <img class="category-card__img-src" [src]="category.image" alt="" />
   </div>
   <div class="category-card__description">
-    <h3>{{ category.categoryName }}</h3>
-    <p>{{ category.cardsAmount }} cards</p>
+    <h3 class="category-card__title">{{ category.categoryName }}</h3>
+    <p class="category-card__amount">{{ category.cardsAmount }} cards</p>
   </div>
 </div>

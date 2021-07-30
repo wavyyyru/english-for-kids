@@ -1,1 +1,23 @@
 @import "./../../../../styles.scss";
+
+.gamestart-btn {
+  height: 0;
+  margin-top: 10px;
+  padding: 8px 3px;
+  width: 130px;
+  background-color: $flamingo;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: none;
+  border-radius: 10px;
+  transition: ease 0.3s;
+
+  &:hover {
+    letter-spacing: 2px;
+    background-color: $orange;
+  }
+}

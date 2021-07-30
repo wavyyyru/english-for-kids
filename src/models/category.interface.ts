@@ -12,4 +12,5 @@ export interface CategoryWords {
   englishWords: string[];
   russianWords: string[];
   images: string[];
+  sounds: string[];
 }
