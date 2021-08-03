@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { takeUntil } from 'rxjs/operators';
 
 import {
   trigger,
@@ -10,6 +11,7 @@ import {
 import { Category } from 'src/models/category.interface';
 import { AppStyleService } from 'src/app/services/app-style.service';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-navigation-panel',
@@ -35,7 +37,8 @@ import { CategoriesService } from 'src/app/services/categories.service';
     ]),
   ],
 })
-export class NavigationPanelComponent implements OnInit {
+export class NavigationPanelComponent implements OnInit, OnDestroy {
+  componentDestroyed$: Subject<boolean> = new Subject();
   categories: Category[];
   menuState: boolean;
 
@@ -46,9 +49,14 @@ export class NavigationPanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories = this.categoriesService.getCategories();
-    this.appStyleService.menuIsOpen.subscribe((value) =>
-      this.onMenuOpen(value)
-    );
+    this.appStyleService.menuIsOpen
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe((value) => this.onMenuOpen);
+  }
+
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next(true);
+    this.componentDestroyed$.complete();
   }
 
   toggleMenuState() {
@@ -57,7 +65,7 @@ export class NavigationPanelComponent implements OnInit {
     );
   }
 
-  onMenuOpen(value: boolean) {
+  onMenuOpen = (value: boolean) => {
     this.menuState = value;
-  }
+  };
 }

@@ -21,8 +21,8 @@
 .word-card {
   position: relative;
   margin: 0 auto;
-  width: 245px;
-  height: 245px;
+  width: toRem(245);
+  height: toRem(245);
   border-radius: 10px;
   transition: ease 0.2s;
   overflow-y: none;
@@ -78,7 +78,7 @@
   .word-card__word {
     margin: 0;
     padding: 0;
-    font-size: 1.5rem;
+    font-size: toRem(24);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -88,8 +88,8 @@
 
   .word-card__btn {
     @include displayFlex(row, center, center);
-    width: 40px;
-    height: 40px;
+    width: toRem(40);
+    height: toRem(40);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -124,21 +124,21 @@
 /* iPads, Tablets */
 @media (min-width: 481px) and (max-width: 768px) {
   .word-card {
-    width: 275px;
-    height: 275px;
+    width: toRem(275);
+    height: toRem(275);
   }
 }
 
 /* Mobile devices */
 @media (min-width: 320px) and (max-width: 480px) {
   .word-card {
-    width: 195px;
-    height: 195px;
+    width: toRem(195);
+    height: toRem(195);
   }
 
   .word-card__description {
     .word-card__word {
-      font-size: 1.2rem;
+      font-size: toRem(22);
     }
   }
 }
@@ -146,12 +146,12 @@
 /*smallest*/
 @media (max-width: 319px) {
   .word-card {
-    width: 195px;
-    height: 195px;
+    width: toRem(195);
+    height: toRem(195);
   }
   .word-card__description {
     .word-card__word {
-      font-size: 1.2rem;
+      font-size: toRem(22);
     }
   }
 }

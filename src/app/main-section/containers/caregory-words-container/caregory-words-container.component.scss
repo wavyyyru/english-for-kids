@@ -1,13 +1,27 @@
 @import "./../../../../styles.scss";
 
-.gamestart-btn {
-  height: 0;
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.game-elements {
+  @include displayFlex(row, start, center);
   margin-top: 10px;
+}
+
+.game-elements__gamestart-btn {
+  height: 0;
   padding: 8px 3px;
-  width: 130px;
+  width: toRem(130);
   background-color: $flamingo;
   color: #fff;
-  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   text-transform: uppercase;
@@ -20,4 +34,9 @@
     letter-spacing: 2px;
     background-color: $orange;
   }
+}
+
+.game-elements__mistake-sign {
+  margin-left: 10px;
+  animation: fadeInLeft 0.3s forwards;
 }

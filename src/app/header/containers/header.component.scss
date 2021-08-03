@@ -1,7 +1,7 @@
 @import "./../../../styles.scss";
 
 .header {
-  height: 90px;
+  height: toRem(90);
 }
 
 .header__content {

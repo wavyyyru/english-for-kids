@@ -37,12 +37,7 @@
         alt=""
       />
     </div>
-    <div
-      class="word-card__description"
-      [ngStyle]="{
-        display: gameState ? 'none' : 'grid'
-      }"
-    >
+    <div class="word-card__description" *ngIf="!gameState">
       <button class="word-card__btn sound-btn">
         <svg
           width="15pt"

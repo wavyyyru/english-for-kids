@@ -5,8 +5,11 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { AppStyleService } from 'src/app/services/app-style.service';
+import { GameModeService } from 'src/app/services/game-mode.service';
 import { CategoryWords } from 'src/models/category.interface';
 
 @Component({
@@ -32,9 +35,7 @@ import { CategoryWords } from 'src/models/category.interface';
     ]),
   ],
 })
-export class WordCardComponent implements OnInit {
-  constructor(private appStyleService: AppStyleService) {}
-
+export class WordCardComponent implements OnInit, OnDestroy {
   @Input()
   categoryWords: CategoryWords;
   @Input()
@@ -42,15 +43,22 @@ export class WordCardComponent implements OnInit {
 
   gameState: boolean;
   flipState: boolean = false;
+  componentDestroyed$: Subject<boolean> = new Subject();
 
-  toggleFlip() {
-    this.flipState = !this.flipState;
+  constructor(
+    private appStyleService: AppStyleService,
+    private gameModeService: GameModeService
+  ) {}
+
+  ngOnInit(): void {
+    this.appStyleService.gameIsStarted
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe((value) => this.onGameStateChange(value));
   }
 
-  chooseCard(cardNum: number) {
-    if (this.gameState) {
-      alert('Card #' + cardNum);
-    }
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next(true);
+    this.componentDestroyed$.complete();
   }
 
   playSound(wordNum: number) {
@@ -62,10 +70,14 @@ export class WordCardComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.appStyleService.gameIsStarted.subscribe((value) =>
-      this.onGameStateChange(value)
-    );
+  toggleFlip() {
+    this.flipState = !this.flipState;
+  }
+
+  chooseCard(cardNum: number) {
+    if (this.gameState) {
+      this.gameModeService.currentAnswer.next(cardNum);
+    }
   }
 
   onGameStateChange(value: boolean) {

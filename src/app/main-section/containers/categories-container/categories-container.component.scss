@@ -1,12 +1,12 @@
 @import "./../../../../styles.scss";
 
 .main__title {
-  font-size: 1.7rem;
+  font-size: toRem(28);
   color: $flamingo;
 }
 
 .main__subtitle {
-  font-size: 1.2rem;
+  font-size: toRem(22);
   color: $orange;
   font-weight: 500;
 }

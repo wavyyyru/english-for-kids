@@ -10,6 +10,11 @@ $green: #00a676ff;
 $blue: #1e91d6ff;
 $red: #ff6663ff;
 
+@function toRem($value) {
+  $remValue: ($value / 16) + rem;
+  @return $remValue;
+}
+
 @mixin displayFlex($flexDirection, $justifyContent, $alignItems) {
   display: flex;
   flex-direction: $flexDirection;
@@ -24,7 +29,7 @@ $red: #ff6663ff;
 }
 
 body {
-  font-size: 14px;
+  font-size: toRem(16);
   color: $black;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
