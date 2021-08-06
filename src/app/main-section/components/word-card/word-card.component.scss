@@ -124,7 +124,7 @@
 /* iPads, Tablets */
 @media (min-width: 481px) and (max-width: 768px) {
   .word-card {
-    width: toRem(275);
+    width: toRem(345);
     height: toRem(275);
   }
 }
@@ -132,7 +132,7 @@
 /* Mobile devices */
 @media (min-width: 320px) and (max-width: 480px) {
   .word-card {
-    width: toRem(195);
+    width: toRem(220);
     height: toRem(195);
   }
 
@@ -146,7 +146,7 @@
 /*smallest*/
 @media (max-width: 319px) {
   .word-card {
-    width: toRem(195);
+    width: toRem(220);
     height: toRem(195);
   }
   .word-card__description {

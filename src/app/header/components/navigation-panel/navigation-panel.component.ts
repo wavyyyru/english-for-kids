@@ -12,6 +12,7 @@ import { Category } from 'src/models/category.interface';
 import { AppStyleService } from 'src/app/services/app-style.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Subject } from 'rxjs';
+import { Disposable } from 'src/interfaces/disposable';
 
 @Component({
   selector: 'app-navigation-panel',
@@ -37,26 +38,23 @@ import { Subject } from 'rxjs';
     ]),
   ],
 })
-export class NavigationPanelComponent implements OnInit, OnDestroy {
-  componentDestroyed$: Subject<boolean> = new Subject();
+export class NavigationPanelComponent extends Disposable implements OnInit {
   categories: Category[];
+
   menuState: boolean;
 
   constructor(
     private categoriesService: CategoriesService,
     private appStyleService: AppStyleService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.categories = this.categoriesService.getCategories();
     this.appStyleService.menuIsOpen
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe((value) => this.onMenuOpen);
-  }
-
-  ngOnDestroy(): void {
-    this.componentDestroyed$.next(true);
-    this.componentDestroyed$.complete();
+      .subscribe((isOpen) => this.onMenuOpen(isOpen));
   }
 
   toggleMenuState() {
@@ -65,7 +63,7 @@ export class NavigationPanelComponent implements OnInit, OnDestroy {
     );
   }
 
-  onMenuOpen = (value: boolean) => {
-    this.menuState = value;
-  };
+  onMenuOpen(isOpen: boolean) {
+    this.menuState = isOpen;
+  }
 }

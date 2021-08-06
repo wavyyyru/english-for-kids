@@ -12,6 +12,7 @@ import { CategoriesContainerComponent } from './main-section/containers/categori
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CaregoryWordsContainerComponent } from './main-section/containers/caregory-words-container/caregory-words-container.component';
 import { WordCardComponent } from './main-section/components/word-card/word-card.component';
+import { ResultsScreenComponent } from './main-section/components/results-screen/results-screen.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'categories', pathMatch: 'full' },
@@ -37,6 +38,7 @@ const routes: Routes = [
     CaregoryWordsContainerComponent,
     CategoryCardComponent,
     WordCardComponent,
+    ResultsScreenComponent,
     PageNotFoundComponent,
   ],
   imports: [

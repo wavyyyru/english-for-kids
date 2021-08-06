@@ -148,6 +148,10 @@ body {
 
 /*smallest*/
 @media (max-width: 319px) {
+  .content-wrapper {
+    width: 90%;
+  }
+
   .cards-grid {
     grid-template-columns: repeat(1, 1fr);
   }

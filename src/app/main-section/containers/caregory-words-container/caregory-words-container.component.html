@@ -17,23 +17,51 @@
   >
     Start game
   </button>
-  <svg
-    class="game-elements__mistake-sign"
-    *ngFor="let mistake of mistakesArray"
-    height="15pt"
-    viewBox="0 0 329.26933 329"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"
-      fill="#ff6663ff"
-    />
-  </svg>
 </div>
 <div class="cards-grid">
   <app-word-card
     [categoryWords]="categoryWords"
+    [gameState]="gameState"
+    [roundState]="roundState"
     *ngFor="let word of categoryWords.englishWords; let i = index"
     [wordCounter]="i"
+    [rightAnswersArray]="rightAnswersArray"
   ></app-word-card>
 </div>
+<div class="game-elements__answers" *ngIf="gameState" [@inOutAnimation]>
+  <p class="game-elements__mistakes-sign">Mistakes</p>
+  <div class="game-elements__mistakes">
+    <svg
+      class="game-elements__mistake"
+      *ngFor="let mistake of mistakesArray"
+      viewBox="0 0 329.26933 329"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"
+        fill="#ff6663ff"
+      />
+    </svg>
+  </div>
+  <p class="game-elements__corrects-sign">Corrects</p>
+  <div class="game-elements__corrects">
+    <svg
+      class="game-elements__correct"
+      *ngFor="let rightAnswer of rightAnswersArray"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+    >
+      <path
+        d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0
+  c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7
+  C514.5,101.703,514.499,85.494,504.502,75.496z"
+        fill="#00a676ff"
+      />
+    </svg>
+  </div>
+</div>
+<app-results-screen
+  *ngIf="resultsAreShown"
+  [mistakesArray]="mistakesArray"
+  [@inOutAnimation]
+></app-results-screen>

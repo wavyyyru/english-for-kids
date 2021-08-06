@@ -1,0 +1,19 @@
+<div class="results">
+  <img
+    class="results__image"
+    [src]="
+      mistakesArray.length === 0
+        ? 'assets/images/trophy.svg'
+        : 'assets/images/okay.svg'
+    "
+    alt="Success"
+  />
+  <h2 class="results__sign" *ngIf="mistakesArray.length === 0">
+    You've got no mistakes. Good job!
+  </h2>
+  <h2 class="results__sign" *ngIf="mistakesArray.length > 0">
+    You've got {{ mistakesArray.length }}
+    {{ mistakesArray.length === 1 ? "mistake" : "mistakes" }}. Better luck next
+    time!
+  </h2>
+</div>
