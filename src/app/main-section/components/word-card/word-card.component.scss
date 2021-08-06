@@ -1,0 +1,157 @@
+@import "./../../../../styles.scss";
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes mirrorRevert {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(-1);
+  }
+}
+
+.word-card {
+  position: relative;
+  margin: 0 auto;
+  width: toRem(245);
+  height: toRem(245);
+  border-radius: 10px;
+  transition: ease 0.2s;
+  overflow-y: none;
+  cursor: pointer;
+
+  transform-style: preserve-3d;
+  perspective: 800px;
+
+  &:hover {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  }
+}
+
+.front,
+.back {
+  position: absolute;
+  backface-visibility: hidden;
+  user-select: none;
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(-180deg);
+}
+
+.word-card__image {
+  @include displayFlex(row, center, center);
+  height: 70%;
+  border-radius: 10px 10px 0 0;
+  background: $white;
+  transition: ease height 0.3s;
+  .word-card__img-src {
+    height: 90%;
+  }
+}
+
+.word-card__description {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  gap: 2px;
+  grid-template-areas: "soundbtn description flipbtn";
+  align-items: center;
+  height: 30%;
+  padding: 5px;
+  background: $orange;
+  border-radius: 0 0 10px 10px;
+  color: #fff;
+
+  .word-card__word {
+    margin: 0;
+    padding: 0;
+    font-size: toRem(24);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    grid-area: description;
+  }
+
+  .word-card__btn {
+    @include displayFlex(row, center, center);
+    width: toRem(40);
+    height: toRem(40);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .sound-btn {
+    background-color: $blue;
+    grid-area: soundbtn;
+    justify-self: start;
+
+    svg {
+      transition: transform 0.2s ease;
+    }
+
+    &:hover svg {
+      transform: scaleX(-1);
+    }
+  }
+
+  .translation-btn {
+    background-color: $green;
+    grid-area: flipbtn;
+    justify-self: end;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+/* iPads, Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .word-card {
+    width: toRem(275);
+    height: toRem(275);
+  }
+}
+
+/* Mobile devices */
+@media (min-width: 320px) and (max-width: 480px) {
+  .word-card {
+    width: toRem(195);
+    height: toRem(195);
+  }
+
+  .word-card__description {
+    .word-card__word {
+      font-size: toRem(22);
+    }
+  }
+}
+
+/*smallest*/
+@media (max-width: 319px) {
+  .word-card {
+    width: toRem(195);
+    height: toRem(195);
+  }
+  .word-card__description {
+    .word-card__word {
+      font-size: toRem(22);
+    }
+  }
+}

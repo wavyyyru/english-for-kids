@@ -1,0 +1,16 @@
+@import "./../../../../styles.scss";
+
+.main__title {
+  font-size: toRem(28);
+  color: $flamingo;
+}
+
+.main__subtitle {
+  font-size: toRem(22);
+  color: $orange;
+  font-weight: 500;
+}
+
+.category-link {
+  text-decoration: none;
+}

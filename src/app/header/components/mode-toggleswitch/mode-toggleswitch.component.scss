@@ -1,0 +1,49 @@
+@import "./../../../../styles.scss";
+.toggleswitch__label {
+  pointer-events: none;
+  .toggleswitch__input {
+    display: none;
+    &:checked + .toggleswitch__toggle-wrapper {
+      box-shadow: 0 8px 14px 0 rgba(darken(#3957ee, 12%), 0.12);
+    }
+    &:checked + .toggleswitch__toggle-wrapper > .toggleswitch__selector {
+      left: calc(100% - 21px);
+      background-color: $green;
+    }
+    &:checked ~ .toggleswitch__notification > .selected:before {
+      content: "Playing";
+    }
+  }
+  .toggleswitch__toggle-wrapper {
+    position: relative;
+    width: toRem(70);
+    height: toRem(25);
+    background-color: $white;
+    border-radius: toRem(999);
+    margin: auto;
+    cursor: pointer;
+    pointer-events: all;
+    box-shadow: 0 8px 14px 0 rgba(darken(#ee5f39, 12%), 0.12);
+    .toggleswitch__selector {
+      width: toRem(17);
+      height: toRem(17);
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
+      background-color: $red;
+      transition: left 0.25s ease;
+      border-radius: 50%;
+    }
+  }
+  .toggleswitch__notification {
+    text-align: center;
+    color: $white;
+    width: 100%;
+    letter-spacing: 1px;
+    .selected:before {
+      content: "Training";
+      font-size: 1.1rem;
+    }
+  }
+}

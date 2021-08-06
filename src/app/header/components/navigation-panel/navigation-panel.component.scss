@@ -1,0 +1,107 @@
+@import "./../../../../styles.scss";
+
+.navigation-button {
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.navigation-button__line {
+  width: toRem(35);
+  height: toRem(4);
+  content: "";
+  background-color: $orange;
+  margin-bottom: 7px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateX(-100%);
+  z-index: 10;
+  height: 100%;
+  width: 25%;
+  padding: 10px;
+  background-color: $white;
+}
+
+.nav__close-button-container {
+  text-align: end;
+}
+
+.nav__close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: ease 0.2s;
+  svg {
+    width: toRem(30);
+    height: toRem(30);
+  }
+  &:hover {
+    transform: translateY(2px);
+  }
+}
+
+.nav__categories {
+  @include displayFlex(column, center, center);
+  list-style: none;
+  font-weight: 600;
+  font-size: toRem(24);
+  text-transform: uppercase;
+  .nav__category-item {
+    margin-top: 5px;
+    letter-spacing: 1px;
+    &:first-of-type {
+      margin-top: 0;
+    }
+    .nav__category-link {
+      text-decoration: none;
+      color: $flamingo;
+      transition: 0.3s ease;
+      &:hover {
+        color: $orange;
+      }
+      &.active {
+        color: $orange;
+      }
+    }
+  }
+}
+
+/* Small screens, laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav {
+    width: 45%;
+  }
+}
+
+/* iPads, Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .nav {
+    width: 100%;
+  }
+}
+
+/* Mobile devices */
+@media (min-width: 320px) and (max-width: 480px) {
+  .nav {
+    width: 100%;
+  }
+}
+
+/*smallest*/
+@media (max-width: 319px) {
+  .nav {
+    width: 100%;
+  }
+}
