@@ -5,17 +5,15 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { AppStyleService } from 'src/app/services/app-style.service';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { GameModeService } from 'src/app/services/game-mode.service';
-import { CategoryWords } from 'src/models/category.interface';
+import { CategoryWords } from 'src/models/category-words.interface';
 
 @Component({
   selector: 'app-word-card',
   templateUrl: './word-card.component.html',
   styleUrls: ['./word-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('flipState', [
       state(
@@ -35,31 +33,21 @@ import { CategoryWords } from 'src/models/category.interface';
     ]),
   ],
 })
-export class WordCardComponent implements OnInit, OnDestroy {
+export class WordCardComponent {
   @Input()
   categoryWords: CategoryWords;
   @Input()
   wordCounter: number;
-
+  @Input()
+  rightAnswersArray: number[];
+  @Input()
+  roundState: boolean;
+  @Input()
   gameState: boolean;
+
   flipState: boolean = false;
-  componentDestroyed$: Subject<boolean> = new Subject();
 
-  constructor(
-    private appStyleService: AppStyleService,
-    private gameModeService: GameModeService
-  ) {}
-
-  ngOnInit(): void {
-    this.appStyleService.gameIsStarted
-      .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe((value) => this.onGameStateChange(value));
-  }
-
-  ngOnDestroy(): void {
-    this.componentDestroyed$.next(true);
-    this.componentDestroyed$.complete();
-  }
+  constructor(private gameModeService: GameModeService) {}
 
   playSound(wordNum: number) {
     if (!this.gameState) {
@@ -75,12 +63,14 @@ export class WordCardComponent implements OnInit, OnDestroy {
   }
 
   chooseCard(cardNum: number) {
-    if (this.gameState) {
+    if (this.gameState && this.roundState) {
       this.gameModeService.currentAnswer.next(cardNum);
     }
   }
 
-  onGameStateChange(value: boolean) {
-    this.gameState = value;
+  checkIfAnswerIsRight(cardNum: number) {
+    return this.rightAnswersArray.find((element) => {
+      cardNum === element;
+    });
   }
 }

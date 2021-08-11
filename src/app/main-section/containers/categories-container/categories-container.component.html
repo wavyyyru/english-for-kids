@@ -6,6 +6,9 @@
     *ngFor="let category of categories"
     [routerLink]="['/category/', category.id]"
   >
-    <app-category-card [category]="category"></app-category-card>
+    <app-category-card
+      [category]="category"
+      [gameState]="gameState"
+    ></app-category-card>
   </a>
 </div>

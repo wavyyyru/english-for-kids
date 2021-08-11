@@ -1,14 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
-$white: #f7f3f2ff;
-$black: #272838ff;
-$orange: #ffbb7b;
-$flamingo: #ff9690;
-$magenta: #ff54b5;
-
-$green: #00a676ff;
-$blue: #1e91d6ff;
-$red: #ff6663ff;
+@import "./variables.scss";
 
 @function toRem($value) {
   $remValue: ($value / 16) + rem;
@@ -69,7 +60,7 @@ body {
   transition: ease 0.2s;
 }
 
-@media (min-width: 1300px) and (max-width: 1669px) {
+@media (min-width: $largestMinWidth) and (max-width: $largestMaxWidth) {
   body {
     background: url("./assets/images/post-1.png") -30% 90% no-repeat,
       url("./assets/images/post-1.png") 100% -12% no-repeat,
@@ -79,7 +70,7 @@ body {
 }
 
 /*  Extra large screens, TV */
-@media (min-width: 1201px) and (max-width: 1299px) {
+@media (min-width: $largeMinWidth) and (max-width: $largeMaxWidth) {
   body {
     background: url("./assets/images/post-1.png") -30% 85% no-repeat,
       url("./assets/images/post-1.png") 100% -12% no-repeat,
@@ -93,7 +84,7 @@ body {
 }
 
 /* Desktops, large screens */
-@media (min-width: 1025px) and (max-width: 1200px) {
+@media (min-width: $desktopMinWidth) and (max-width: $desktopMaxWidth) {
   body {
     background: url("./assets/images/post-1.png") -30% 60% no-repeat,
       url("./assets/images/post-1.png") 101% -10% no-repeat,
@@ -106,7 +97,7 @@ body {
 }
 
 /* Small screens, laptops */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: $smallMinWidth) and (max-width: $smallMaxWidth) {
   body {
     background: url("./assets/images/post-1.png") -30% 60% no-repeat,
       url("./assets/images/post-1.png") 105% -11% no-repeat,
@@ -119,7 +110,7 @@ body {
 }
 
 /* iPads, Tablets */
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: $tabletsMinWidth) and (max-width: $tabletsMaxWidth) {
   body {
     background: url("./assets/images/post-1.png") -37% 50% no-repeat,
       url("./assets/images/post-1.png") 115% -12% no-repeat,
@@ -133,7 +124,7 @@ body {
 }
 
 /* Mobile devices */
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: $mobilesMinWidth) and (max-width: $mobilesMaxWidth) {
   body {
     background: url("./assets/images/post-1.png") -60% 50% no-repeat,
       url("./assets/images/post-1.png") 120% -8% no-repeat,
@@ -147,7 +138,11 @@ body {
 }
 
 /*smallest*/
-@media (max-width: 319px) {
+@media (max-width: $smallestDevicesWidth) {
+  .content-wrapper {
+    width: 90%;
+  }
+
   .cards-grid {
     grid-template-columns: repeat(1, 1fr);
   }

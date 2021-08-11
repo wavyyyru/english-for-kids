@@ -27,9 +27,9 @@
 .category-card__description {
   height: 30%;
   padding: 5px;
-  background: $flamingo;
   border-radius: 0 0 10px 10px;
   color: #fff;
+  transition: ease 0.3s;
   .category-card__title,
   .category-card__amount {
     margin: 0;
@@ -44,8 +44,16 @@
   }
 }
 
+.category-card__description.game-on {
+  background-color: $orange;
+}
+
+.category-card__description.game-off {
+  background-color: $flamingo;
+}
+
 /* iPads, Tablets */
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: $tabletsMinWidth) and (max-width: $tabletsMaxWidth) {
   .category-card {
     width: toRem(325);
     height: toRem(325);
@@ -53,7 +61,7 @@
 }
 
 /* Mobile devices */
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: $mobilesMinWidth) and (max-width: $mobilesMaxWidth) {
   .category-card {
     width: toRem(205);
     height: toRem(205);
@@ -71,7 +79,7 @@
 }
 
 /*smallest*/
-@media (max-width: 319px) {
+@media (max-width: $smallestDevicesWidth) {
   .category-card {
     width: toRem(195);
     height: toRem(195);

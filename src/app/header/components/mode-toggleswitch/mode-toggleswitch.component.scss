@@ -1,5 +1,11 @@
 @import "./../../../../styles.scss";
+
+.toggleswitch {
+  width: toRem(100);
+}
+
 .toggleswitch__label {
+  @include displayFlex(column, center, center);
   pointer-events: none;
   .toggleswitch__input {
     display: none;

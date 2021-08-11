@@ -1,4 +1,7 @@
-<div class="root" [style.overflow-y]="pageIsTinted ? 'hidden' : 'auto'">
+<div
+  class="root"
+  [ngClass]="pageIsTinted ? 'overflow-disabled' : 'overflow-enabled'"
+>
   <div class="tint" [@goTinted]="pageIsTinted ? 'move' : 'stay'"></div>
   <app-header></app-header>
   <app-main-section></app-main-section>

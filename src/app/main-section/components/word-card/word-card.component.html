@@ -26,9 +26,12 @@
     <div
       (click)="chooseCard(wordCounter)"
       class="word-card__image"
+      [ngClass]="gameState ? 'game-on' : 'game-off'"
       [ngStyle]="{
-        height: gameState ? '100%' : '70%',
-        borderRadius: gameState ? '10px' : '10px 10px 0 0'
+        filter:
+          rightAnswersArray.includes(wordCounter) && gameState
+            ? 'grayscale(1)'
+            : 'none'
       }"
     >
       <img

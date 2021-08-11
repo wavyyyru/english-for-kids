@@ -1,6 +1,6 @@
 @import "./../../../../styles.scss";
 
-@keyframes fadeInLeft {
+@keyframes fadeInRight {
   0% {
     opacity: 0;
     transform: translateX(-20px);
@@ -12,7 +12,7 @@
 }
 
 .game-elements {
-  @include displayFlex(row, start, center);
+  @include displayFlex(row, space-between, center);
   margin-top: 10px;
 }
 
@@ -36,7 +36,86 @@
   }
 }
 
-.game-elements__mistake-sign {
+.game-elements__answers {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  grid-template-areas:
+    "corrects-sign corrects"
+    "mistakes-sign mistakes";
+  margin-top: 35px;
+  padding: 10px;
+  width: toRem(450);
+  background: rgba($white, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.game-elements__corrects-sign,
+.game-elements__mistakes-sign {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.game-elements__corrects-sign {
+  grid-area: corrects-sign;
+  color: $green;
+  letter-spacing: toRem(0.5);
+}
+
+.game-elements__mistakes-sign {
+  grid-area: mistakes-sign;
+  color: $red;
+  letter-spacing: toRem(1);
+}
+
+.game-elements__corrects,
+.game-elements__mistakes {
+  overflow: hidden;
+  height: toRem(23);
+}
+
+.game-elements__mistakes {
+  grid-area: mistakes;
+}
+
+.game-elements__corrects {
+  grid-area: corrects;
+}
+
+.game-elements__mistake {
   margin-left: 10px;
-  animation: fadeInLeft 0.3s forwards;
+  animation: fadeInRight 0.3s forwards;
+  height: toRem(20);
+}
+
+.game-elements__correct {
+  margin-left: 10px;
+  animation: fadeInRight 0.3s forwards;
+  height: toRem(20);
+}
+
+/* iPads, Tablets */
+@media (min-width: $tabletsMinWidth) and (max-width: $tabletsMaxWidth) {
+  .game-elements__answers {
+    width: 100%;
+  }
+}
+
+/* Mobile devices */
+@media (min-width: $mobilesMinWidth) and (max-width: $mobilesMaxWidth) {
+  .game-elements__answers {
+    width: 100%;
+  }
+}
+
+/*smallest*/
+@media (max-width: $smallestDevicesWidth) {
+  .game-elements__answers {
+    width: 100%;
+  }
 }
