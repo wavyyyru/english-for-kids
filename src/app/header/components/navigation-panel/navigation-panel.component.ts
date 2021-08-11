@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 
 import {
@@ -11,7 +11,6 @@ import {
 import { Category } from 'src/models/category.interface';
 import { AppStyleService } from 'src/app/services/app-style.service';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { Subject } from 'rxjs';
 import { Disposable } from 'src/interfaces/disposable';
 
 @Component({
@@ -54,7 +53,7 @@ export class NavigationPanelComponent extends Disposable implements OnInit {
     this.categories = this.categoriesService.getCategories();
     this.appStyleService.menuIsOpen
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe((isOpen) => this.onMenuOpen(isOpen));
+      .subscribe(this.onMenuOpen);
   }
 
   toggleMenuState() {
@@ -63,7 +62,7 @@ export class NavigationPanelComponent extends Disposable implements OnInit {
     );
   }
 
-  onMenuOpen(isOpen: boolean) {
+  onMenuOpen = (isOpen: boolean) => {
     this.menuState = isOpen;
-  }
+  };
 }

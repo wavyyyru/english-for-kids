@@ -4,10 +4,7 @@
   </div>
   <div
     class="category-card__description"
-    [ngStyle]="{
-      backgroundColor: gameState ? '#ffbb7b' : '#ff9690',
-      transition: 'ease 0.3s'
-    }"
+    [ngClass]="gameState ? 'game-on' : 'game-off'"
   >
     <h3 class="category-card__title">{{ category.categoryName }}</h3>
     <p class="category-card__amount">{{ category.cardsAmount }} cards</p>

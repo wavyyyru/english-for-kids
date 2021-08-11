@@ -7,7 +7,7 @@ import {
 } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { GameModeService } from 'src/app/services/game-mode.service';
-import { CategoryWords } from 'src/models/category.interface';
+import { CategoryWords } from 'src/models/category-words.interface';
 
 @Component({
   selector: 'app-word-card',

@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppStyleService } from 'src/app/services/app-style.service';
-import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Disposable } from 'src/interfaces/disposable';
 
@@ -19,7 +18,7 @@ export class ModeToggleswitchComponent extends Disposable implements OnInit {
   ngOnInit(): void {
     this.appStyleService.gameIsStarted
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe((value) => this.onGameStateChange);
+      .subscribe(this.onGameStateChange);
   }
 
   toggleMode() {

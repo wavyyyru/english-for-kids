@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
+import { timer } from 'rxjs';
 import { AppStyleService } from 'src/app/services/app-style.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { GameModeService } from 'src/app/services/game-mode.service';
-import { CategoryWords } from 'src/models/category.interface';
+import { CategoryWords } from 'src/models/category-words.interface';
 import { Router } from '@angular/router';
 
 import { trigger, style, animate, transition } from '@angular/animations';
@@ -49,21 +49,7 @@ export class CaregoryWordsContainerComponent
     super();
     activatedRoute.params
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe((value) => {
-        const categoryId = Number(
-          this.activatedRoute.snapshot.paramMap.get('id')
-        );
-
-        this.categoriesService.getWordsByCategory(categoryId);
-
-        this.categoriesService.chosenCategory
-          .pipe(takeUntil(this.componentDestroyed$))
-          .subscribe((value) => (this.categoryWords = value));
-
-        this.gameModeService.resetValues();
-        this.mistakesArray = [];
-        this.rightAnswersArray = [];
-      });
+      .subscribe(this.onRouteChange);
   }
 
   ngOnInit(): void {
@@ -84,6 +70,20 @@ export class CaregoryWordsContainerComponent
       });
   }
 
+  onRouteChange = (value: Params) => {
+    const categoryId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+
+    this.categoriesService.getWordsByCategory(categoryId);
+
+    this.categoriesService.chosenCategory
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe((value) => (this.categoryWords = value));
+
+    this.gameModeService.resetValues();
+    this.mistakesArray = [];
+    this.rightAnswersArray = [];
+  };
+
   onGameStateChange(value: boolean) {
     if (!value) {
       this.gameModeService.resetValues();
@@ -95,15 +95,15 @@ export class CaregoryWordsContainerComponent
 
   showAndHideResults() {
     this.resultsAreShown = !this.resultsAreShown;
-    setTimeout(() => {
-      this.resultsAreShown = !this.resultsAreShown;
-    }, 7000);
+    timer(7000)
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe(() => (this.resultsAreShown = !this.resultsAreShown));
   }
 
   redirectToHome() {
-    setTimeout(() => {
-      this.router.navigateByUrl('/');
-    }, 7000);
+    timer(7000)
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe(() => this.router.navigateByUrl('/'));
   }
 
   startGameRound() {
@@ -129,18 +129,19 @@ export class CaregoryWordsContainerComponent
     }
 
     if (userAnswer === this.gameModeService.questionAudio) {
-      this.playSound('/assets/sounds/sound-correct.wav', 0.1);
+      this.playSound('/assets/sounds/sound-correct.mp3', 0.1);
       this.rightAnswersArray.push(userAnswer);
       this.gameModeService.questionCounter++;
       this.startGameRound();
     } else if (userAnswer !== this.gameModeService.questionAudio) {
+      debugger;
       if (this.mistakesArray[this.mistakesArray.length - 1] === userAnswer) {
         this.playSound(
           this.categoryWords.sounds[this.gameModeService.questionAudio],
           1
         );
       } else {
-        this.playSound('/assets/sounds/sound-wrong.wav', 0.1);
+        this.playSound('/assets/sounds/sound-wrong.mp3', 0.1);
         this.mistakesArray.push(userAnswer);
       }
     }

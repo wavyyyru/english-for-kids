@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppStyleService } from 'src/app/services/app-style.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Category } from 'src/models/category.interface';
 import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { Disposable } from 'src/interfaces/disposable';
 
 @Component({

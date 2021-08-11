@@ -10,12 +10,17 @@ export class GameModeService {
   questionAudio: number;
   questionCounter: number;
   currentAnswer: BehaviorSubject<number> = new BehaviorSubject<number>(-1);
+  //defaults
+  roundStateDefault: boolean = false;
+  questionAudioDefault: number = 0;
+  questionCounterDefault: number = 0;
+  currentAnswerDefault: number = -1;
 
   resetValues() {
-    this.roundState.next(false);
+    this.roundState.next(this.roundStateDefault);
     this.questionIndexes.sort((a, b) => 0.5 - Math.random());
-    this.questionAudio = 0;
-    this.questionCounter = 0;
-    this.currentAnswer.next(-1);
+    this.questionAudio = this.questionAudioDefault;
+    this.questionCounter = this.questionCounterDefault;
+    this.currentAnswer.next(this.currentAnswerDefault);
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppStyleService } from './services/app-style.service';
 import {
   trigger,
@@ -7,7 +7,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
-import { NONE_TYPE } from '@angular/compiler';
+import { Disposable } from 'src/interfaces/disposable';
 
 @Component({
   selector: 'app-root',
@@ -35,11 +35,13 @@ import { NONE_TYPE } from '@angular/compiler';
     ]),
   ],
 })
-export class AppComponent {
+export class AppComponent extends Disposable implements OnInit {
   title = 'english-for-kids';
   pageIsTinted: boolean;
 
-  constructor(private appStyleService: AppStyleService) {}
+  constructor(private appStyleService: AppStyleService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.appStyleService.menuIsOpen.subscribe(

@@ -9,6 +9,14 @@
   background-color: rgba($color: $black, $alpha: 0.15);
 }
 
+.tint.overflow-enabled {
+  overflow-y: auto;
+}
+
+.tint.overflow-disabled {
+  overflow-y: hidden;
+}
+
 .temporary-div {
   //@todo
   margin-top: 50px;

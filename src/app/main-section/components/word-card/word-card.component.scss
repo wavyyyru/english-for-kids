@@ -54,12 +54,22 @@
 .word-card__image {
   @include displayFlex(row, center, center);
   height: 70%;
-  border-radius: 10px 10px 0 0;
+
   background: $white;
   transition: ease height 0.3s;
   .word-card__img-src {
     height: 90%;
   }
+}
+
+.game-off {
+  height: 70%;
+  border-radius: 10px 10px 0 0;
+}
+
+.game-on {
+  height: 100%;
+  border-radius: 10px;
 }
 
 .word-card__description {
@@ -122,7 +132,7 @@
 }
 
 /* iPads, Tablets */
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: $tabletsMinWidth) and (max-width: $tabletsMaxWidth) {
   .word-card {
     width: toRem(345);
     height: toRem(275);
@@ -130,7 +140,7 @@
 }
 
 /* Mobile devices */
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: $mobilesMinWidth) and (max-width: $mobilesMaxWidth) {
   .word-card {
     width: toRem(220);
     height: toRem(195);
@@ -144,7 +154,7 @@
 }
 
 /*smallest*/
-@media (max-width: 319px) {
+@media (max-width: $smallestDevicesWidth) {
   .word-card {
     width: toRem(220);
     height: toRem(195);

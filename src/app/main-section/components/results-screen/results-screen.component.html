@@ -1,4 +1,4 @@
-<div class="results">
+<div class="results content-wrapper">
   <img
     class="results__image"
     [src]="
@@ -8,10 +8,10 @@
     "
     alt="Success"
   />
-  <h2 class="results__sign" *ngIf="mistakesArray.length === 0">
+  <h2 class="results__sign" *ngIf="!mistakesArray.length">
     You've got no mistakes. Good job!
   </h2>
-  <h2 class="results__sign" *ngIf="mistakesArray.length > 0">
+  <h2 class="results__sign" *ngIf="mistakesArray.length">
     You've got {{ mistakesArray.length }}
     {{ mistakesArray.length === 1 ? "mistake" : "mistakes" }}. Better luck next
     time!
